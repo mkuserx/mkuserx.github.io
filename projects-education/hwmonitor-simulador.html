@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Incluye esto en la etiqueta <head> de tu HTML -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>Simulador HWMonitor</title>
+    <style>
+        :root {
+            --taskbar-height: 40px;
+            --icon-size: 64px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+        
+        body {
+  min-height: 100vh;
+  background-image: url('fondooo.jpeg'); /* Cambia la ruta */
+  background-size: cover;      /* Ajusta la imagen al tamaño del viewport */
+  background-repeat: no-repeat;/* Evita que se repita */
+  background-position: center; /* Centra la imagen */
+  background-attachment: fixed;/* Fondo fijo al hacer scroll (opcional) */
+  font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+        
+        /* Escritorio */
+        .desktop {
+            position: absolute;
+            width: 100%;
+            height: calc(100% - var(--taskbar-height));
+            background-color: #00808000;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            padding: 10px;
+        }
+        
+        /* Iconos del escritorio */
+        .desktop-icon {
+            width: var(--icon-size);
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+        
+        .desktop-icon:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .desktop-icon:active {
+            transform: scale(0.95);
+        }
+        
+        .desktop-icon img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 5px;
+        }
+        
+        /* Barra de tareas */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: var(--taskbar-height);
+            background-color: #c0c0c0;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            border-top: 2px solid #dfdfdf;
+            z-index: 1000;
+        }
+        
+        .start-button {
+            height: 32px;
+            padding: 0 10px;
+            background: linear-gradient(to bottom, #00808038, #0040404A);
+            color: #0027FF;
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #004040;
+        }
+        .window {
+            position: absolute;
+            width: 90%;
+            max-width: 800px;
+            min-width: 300px;
+            height: 70%;
+            min-height: 400px;
+            background-color: #ece9d8;
+            border: 2px solid #000;
+            border-top-color: #dfdfdf;
+            border-left-color: #dfdfdf;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .window-header {
+            height: 30px;
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-weight: bold;
+            cursor: move;
+        }
+        
+        .window-controls {
+            display: flex;
+        }
+        
+        .window-control {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
+            background-color: #ece9d8;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .window-content {
+            flex: 1;
+            overflow: auto;
+            padding: 10px;
+        }
+        
+        /* Estilos específicos de HWMonitor */
+        .sensor-group {
+            margin-bottom: 15px;
+            border: 1px solid #c0c0c0;
+            padding: 5px;
+        }
+        
+        .sensor-group-title {
+            font-weight: bold;
+            background-color: #d4d0c8;
+            padding: 3px 5px;
+            margin-bottom: 5px;
+        }
+        
+        .sensor-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 3px 5px;
+            font-size: 14px;
+        }
+        
+        .sensor-name {
+            color: #000080;
+        }
+        
+        .sensor-value {
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Efectos de carga */
+        .loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            z-index: 1001;
+        }
+        
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsivo para móviles */
+        @media (max-width: 600px) {
+            :root {
+                --icon-size: 56px;
+                --taskbar-height: 50px;
+            }
+            
+            .desktop-icon {
+                width: 25%;
+                margin: 5px 0;
+            }
+            
+            .desktop-icon img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .window {
+                width: 95%;
+                height: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Escritorio -->
+    <div class="desktop">
+        <div class="desktop-icon" onclick="openHWMonitor()">
+            <img src="hwmonitor.png" alt="HWMonitor">
+            <span>HWMonitor</span>
+        </div>
+        <div class="desktop-icon">
+            <img src="papelera.jpeg" alt="Papelera">
+            <span>Papelera</span>
+        </div>
+        <div class="desktop-icon">
+            <img src="thispc.jpeg" alt="Mi PC">
+            <span>Mi PC</span>
+        </div>
+    </div>
+    
+    <!-- Barra de tareas -->
+    <div class="taskbar">
+        <div class="start-button">
+            
+<i class="fab fa-windows"></i>
+</div>
+<a href="/" style="text-decoration: none; color: grey; margin-left: 6px; margin-right: 6px; font-size: 13px; /*by alexis yhoel*/">SIMULACIÓN DE DIAGNÓSTICO </a>
+    </div>
+    
+    <!-- Ventana HWMonitor -->
+    <div class="window" id="hwmonitor-window">
+        <div class="window-header">
+            HWMonitor v1.45
+            <div class="window-controls">
+                <div class="window-control" onclick="minimizeWindow()">_</div>
+                <div class="window-control" onclick="closeWindow()">X</div>
+            </div>
+        </div>
+        <div class="window-content" id="hwmonitor-content">
+            <!-- Contenido generado dinámicamente -->
+        </div>
+    </div>
+    
+    <!-- Pantalla de carga -->
+    <div class="loading" id="loading-screen">
+        <div class="loading-spinner"></div>
+        <div>Analizando hardware del sistema... <br />
+        <p style="font-size: 12px; color: dimgrey;">(De GRUPO 12) by Alexs</p></div>
+    </div>
+    <script>
+eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('t F(){1V{k:"1U 1T 1S-1R",j:"1Q 1P 1O 1N",z:"1M 1L 1K",o:["1J 1I 1H 1G 1F","1E 1D 1C 1B"],v:{k:(h.g()*10+1A).f(1),j:(h.g()*10+1z).f(1),1y:(h.g()*5+w).f(1),o:[(h.g()*10+X).f(1),(h.g()*5+w).f(1)]},A:{k:(h.g()*w+1x).f(1),j:(h.g()*1w+15).f(1),z:(h.g()*w+w).f(1)},y:[(h.g()*1v+N).f(0),(h.g()*Y+1u).f(0),(h.g()*1t+Y).f(0)],l:[(h.g()*0.1+1.2).f(2),(h.g()*0.2+3.3).f(2),(h.g()*0.1+1.X).f(2),(h.g()*0.3+12.0).f(2)],K:{k:(h.g()*1+4.7).f(2),j:(h.g()*1s+1r).f(0)}}}t E(b){u M=s.r(\'x-M\');M.1q=`<a 9="8-i"><a 9="8-i-m">${b.k}</a><a 9="8-e"><6 9="8-d">W</6><6 9="8-c">${b.v.k}°C</6></a><a 9="8-e"><6 9="8-d">Jón</6><6 9="8-c">${b.A.k}%</6></a><a 9="8-e"><6 9="8-d">U</6><6 9="8-c">${b.K.k}1p</6></a><a 9="8-e"><6 9="8-d">T nú1o</6><6 9="8-c">${b.l[0]}V</6></a></a><a 9="8-i"><a 9="8-i-m">${b.j}</a><a 9="8-e"><6 9="8-d">W L</6><6 9="8-c">${b.v.j}°C</6></a><a 9="8-e"><6 9="8-d">Jón L</6><6 9="8-c">${b.A.j}%</6></a><a 9="8-e"><6 9="8-d">U L</6><6 9="8-c">${b.K.j}1n</6></a></a><a 9="8-i"><a 9="8-i-m">1m(${b.z})</a><a 9="8-e"><6 9="8-d">Jón</6><6 9="8-c">${b.A.z}%</6></a><a 9="8-e"><6 9="8-d">T 1l</6><6 9="8-c">${b.l[2]}V</6></a></a><a 9="8-i"><a 9="8-i-m">1k</a><a 9="8-e"><6 9="8-d">${b.o[0]}</6><6 9="8-c">${b.v.o[0]}°C</6></a><a 9="8-e"><6 9="8-d">${b.o[1]}</6><6 9="8-c">${b.v.o[1]}°C</6></a></a><a 9="8-i"><a 9="8-i-m">1j</a><a 9="8-e"><6 9="8-d">1i I</6><6 9="8-c">${b.y[0]}H</6></a><a 9="8-e"><6 9="8-d">S I 1</6><6 9="8-c">${b.y[1]}H</6></a><a 9="8-e"><6 9="8-d">S I 2</6><6 9="8-c">${b.y[2]}H</6></a></a><a 9="8-i"><a 9="8-i-m">1h</a><a 9="8-e"><6 9="8-d">+3.1g</6><6 9="8-c">${b.l[1]}V</6></a><a 9="8-e"><6 9="8-d">+1f</6><6 9="8-c">${b.l[1]}V</6></a><a 9="8-e"><6 9="8-d">+1e</6><6 9="8-c">${b.l[3]}V</6></a></a>`}t 1d(){u G=s.r(\'1c-1b\');u Q=s.r(\'x-D\');G.q.p=\'P\';1a(()=>{u R=F();E(R);G.q.p=\'B\';Q.q.p=\'P\';19(()=>{u O=F();E(O)},18)},N)}t 17(){s.r(\'x-D\').q.p=\'B\'}t 16(){s.r(\'x-D\').q.p=\'B\'}14.13(\'11 Z\')',62,120,'||||||span||sensor|class|div|data|value|name|item|toFixed|random|Math|group|gpu|cpu|voltages|title||disks|display|style|getElementById|document|function|const|temps|30|hwmonitor|fans|ram|loads|none||window|displayHardwareData|generateHardwareData|loadingScreen|RPM|Fan|Utilizaci|clock|GPU|content|800|newData|flex|hwmonitorWindow|hardwareData|Chasis|Voltaje|Frecuencia||Temperatura|35|600|Alex||DE||log|console||minimizeWindow|closeWindow|3000|setInterval|setTimeout|screen|loading|openHWMonitor|12V|5V|3V|Voltajes|CPU|Ventiladores|Almacenamiento|DRAM|Memoria|MHz|cleo|GHz|innerHTML|1800|200|400|1000|500|40|20|system|50|45|HDD|2TB|Barracuda|Seagate|NVMe|1TB|Pro|980|Samsung|3600MHz|DDR4|32GB|Ti|3080|RTX|NVIDIA|12700K|i7|Core|Intel|return'.split('|'),0,{}))
+
+    </script>
+</body>
+</html>
