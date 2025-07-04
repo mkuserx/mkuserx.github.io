@@ -6,6 +6,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRESENTACIÓN DE INFORME</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    .boton-flotante {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #4CAF50;
+      color: white;
+      border-radius: 50%;
+      width: 65px;
+      height: 65px;
+      box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      text-decoration: none;
+      z-index: 999;
+      animation: flotar 2.5s infinite ease-in-out;
+    }
+    .boton-flotante::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      box-shadow: 0 0 15px 5px rgba(76, 175, 80, 0.3);
+      animation: resplandor 1.5s infinite ease-in-out;
+    }
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes resplandor {
+      0%, 100% { box-shadow: 0 0 15px 5px rgba(76, 175, 80, 0.3); }
+      50% { box-shadow: 0 0 20px 10px rgba(76, 175, 80, 0.5); }
+    }
+
+    .punto-rojo {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 12px;
+      height: 12px;
+      background-color: red;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+  </style>
   <style>
 :root{--primary-color:#0037F3;--secondary-color:#047800;--accent-color:#FFF;--premium-color:#FFD700;--bg-color:#B2AEAE;--card-bg:#FFF;--text-color:#333;--shadow:0 10px 20px rgba(0, 0, 0, 0.1);--transition:all 0.3s ease}*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:var(--bg-color);color:var(--text-color);line-height:1.6;padding-bottom:80px}header{background:var(--primary-color);padding:1.5rem 0;box-shadow:0 4px 12px rgba(0,55,243,0.2);position:relative;z-index:10}h1{color:var(--accent-color);text-align:center;font-size:2.2rem;text-shadow:1px 1px 3px rgba(0, 0, 0, 0.2);animation:fadeInDown 0.8s ease}.container{max-width:1200px;margin:2rem auto;padding:0
 20px}.download-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:2rem}.download-card{background:var(--card-bg);border-radius:15px;overflow:hidden;box-shadow:var(--shadow);transition:var(--transition);transform:translateY(0);position:relative}.download-card:hover{transform:translateY(-10px);box-shadow:0 15px 30px rgba(0,0,0,0.15)}.card-header{background:var(--primary-color);color:var(--accent-color);padding:1.2rem;text-align:center;font-weight:bold}.card-body{padding:1.5rem}.file-info{display:flex;justify-content:space-between;margin-bottom:1rem;font-size:0.9rem;color:#666}.download-btn{display:block;background:var(--secondary-color);color:var(--accent-color);text-decoration:none;font-weight:bold;text-align:center;padding:12px
@@ -96,7 +153,10 @@ bounce{0%,20%,50%,80%,100%{transform:translateY(0)}40%{transform:translateY(-15p
   <footer>
     MKUSERX DESCARGA - GRUPO 12 - Actualizada el 03/07/2025 <br />by Alex
   </footer>
-
+  <a href="https://mkuserx.github.io/chatbot" class="boton-flotante" target="_blank">
+    <i class="fa-solid fa-robot"></i>
+    <span class="punto-rojo"></span>
+  </a>
   <script>
 eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('1.6(\'19\',4(){3 F=1.v(\'.u-18\');3 7=1.8(\'7\');3 i=1.8(\'i\');3 h=1.8(\'h\');3 f=1.8(\'f\');3 l=1.8(\'l\');p d;p o=\'\';F.s(E=>{E.6(\'k\',4(e){e.17();o=b.16(\'j\');7.n.15(\'m\');p 2=5;i.g=2;h.g=2;f.9.D=\'C%\';d=14(()=>{2--;i.g=2;h.g=2;f.9.D=`${(2/5)*C}%`;B(2<=0){A(d);7.n.z(\'m\');x.w.j=o}},13)})});7.6(\'k\',4(e){B(e.12===b){A(d);7.n.z(\'m\')}});l.6(\'k\',4(){11(\'10 Z a Y X, y W V U T S R y Q P\');x.w.j="O://N-M.L.K/J/"});3 t=1.v(\'.u-c\');t.s(c=>{c.6(\'I\',4(){b.9.r=\'q(-H)\'});c.6(\'G\',4(){b.9.r=\'q(0)\'})})});',62,72,'|document|seconds|const|function||addEventListener|countdownModal|getElementById|style||this|card|countdown||countdownProgress|textContent|countdownSeconds|countdownNumber|href|click|premiumIcon|active|classList|currentLink|let|translateY|transform|forEach|cards|download|querySelectorAll|location|window|no|remove|clearInterval|if|100|width|button|downloadButtons|mouseleave|10px|mouseenter|donaciones|pe|webnode|descargas|minetoipex|https|seguros|muy|anuncios|mostrarse|pueden|que|ya|permanezca|externo|sitio|redireccionado|Seras|alert|target|1000|setInterval|add|getAttribute|preventDefault|btn|DOMContentLoaded'.split('|'),0,{}))
 
