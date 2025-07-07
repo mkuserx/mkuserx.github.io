@@ -9,7 +9,10 @@ self.addEventListener('install', event => {
         '/respuestas.json',
         '/icon-192.png',
         '/icon-512.png'
-        // Agrega aquí tus scripts y CSS si tienes
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+      '/12345ttyyghjhguivdjjfjr.sec.css'
+      'function.ch.js'
+        // Agregar 
       ]);
     })
   );
