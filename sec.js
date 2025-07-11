@@ -1,4 +1,3 @@
-<script>
 document.addEventListener("contextmenu", function(e) {
   e.preventDefault();
 }, false);
@@ -37,4 +36,3 @@ document.addEventListener("keydown", function(e) {
     }
   }, 1000);
 })();
-</script>
