@@ -1,1 +1,49 @@
-<h1>PAGINA NO ENCONTRADA</h1>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 — Página no encontrada</title>
+  <meta name="description" content="Página 404 — La página que buscas no existe o fue movida." />
+  <link rel="stylesheet" href="/styles1.css" type="text/css" media="all" />
+</head>
+<body>
+  <main class="card" role="main" aria-labelledby="title">
+    <section class="left" aria-label="Información de error">
+      <h1 id="title" class="big-404" aria-hidden="true">404</h1>
+      <h2 style="font-size:18px;margin-top:0">Ups — no encontramos esa página</h2>
+      <p>La URL que intentas abrir no existe, fue movida o el enlace está roto. Puedes volver al inicio o intentar buscar lo que necesitas.</p>
+
+      <div class="actions" aria-hidden="false">
+        <a class="btn btn--ghost" href="/" title="Ir al inicio">← Ir al inicio</a>
+        <a class="btn btn--ghost" href="javascript:history.back()" title="Volver">Volver</a>
+        
+      </div>
+
+      <footer class="small" aria-hidden="true">Si crees que esto es un error, contáctanos y mándanos la URL.</footer>
+    </section>
+
+    <aside class="illustration" aria-hidden="true">
+      <div class="illu-box" role="img" aria-label="Icono página no encontrada">
+        <!-- simple SVG illustration -->
+        <svg class="logo-blob" width="140" height="140" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#60a5fa" stop-opacity="0.95"/>
+              <stop offset="1" stop-color="#2563eb" stop-opacity="0.85"/>
+            </linearGradient>
+          </defs>
+          <rect x="6" y="6" width="108" height="108" rx="14" fill="url(#g)" opacity="0.12"/>
+          <g transform="translate(20,18)">
+            <circle cx="40" cy="34" r="22" fill="#fff"/>
+            <rect x="6" y="64" width="68" height="6" rx="3" fill="#fff" opacity="0.8"/>
+            <line x1="28" y1="24" x2="44" y2="40" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="44" y1="24" x2="28" y2="40" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+      <div class="muted-note">¿Necesitas ayuda? Usa el buscador o contáctanos.</div>
+    </aside>
+  </main>
+</body>
+</html>
