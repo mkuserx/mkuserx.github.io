@@ -145,7 +145,7 @@ main blockquote {
   background: #fafafa;
   border-radius: 4px;
 }
-main button,
+/*main button,
 main .btn {
   background: var(--accent-color);
   color: #fff;
@@ -160,7 +160,7 @@ main button:hover,
 main .btn:hover {
   background: #005cd1;
   transform: translateY(-1px);
-}
+}*/
 main input, main select, main textarea {
   width: 100%;
   padding: 0.6rem;
@@ -212,8 +212,8 @@ main figcaption {
   main h1 { font-size: 1.5rem; }
   main h2 { font-size: 1.3rem; }
   main p, main li { font-size: 0.95rem; }
-  main button, main .btn {
+  /*main button, main .btn {
     width: 100%;
     text-align: center;
-  }
+  }*/
 }
