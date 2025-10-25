@@ -1,0 +1,406 @@
+@import url("/general.css");
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1A0069;
+      scroll-behavior: smooth;
+    }
+        /* ====== HERO ====== */
+    .hero {
+      height: 100vh;
+      background: url('/heros.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      max-width: 700px;
+      padding: 0 20px;
+      animation: fadeSlideIn 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-content h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .hero-content h2 span { color: #883CFF; }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      color: #f0f0f0;
+    }
+
+    .btn-cta {
+      background: #4800D5;
+      color: #F9F9F9;
+      padding: 12px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .btn-cta:hover {
+      background: #ffda33;
+      transform: scale(1.05);
+    }
+
+    /* ===================== */
+/*      CARDS SECTION    */
+/* ===================== */
+.cards-section {
+  padding: 100px 20px;
+  background: #F9F9F90F;
+  text-align: center;
+}
+
+.cards-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 60px;
+  color: #9F9F9F;
+  font-weight: 600;
+  position: relative;
+}
+
+.cards-section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ffd700;
+  margin: 12px auto 0;
+  border-radius: 3px;
+}
+
+/* Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Card */
+.card {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2px;
+  animation: fadeSlideUp 1s ease forwards;
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.card .border-animated {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: conic-gradient(from 0deg,
+      #ffd700,
+      #ff9800,
+      #ff0066,
+      #6600ff,
+      #00ccff,
+      #00ff99,
+      #ffd700);
+  animation: rotateBorder 4s linear infinite;
+  z-index: 0;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: 18px;
+  padding: 40px 25px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-content:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  color: #222;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Botón */
+.btn-card {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 2px solid #ffd700;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-card:hover {
+  background: #ffd700;
+  color: #111;
+  transform: scale(1.05);
+}
+
+/* Animaciones */
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateBorder {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cards-section {
+    padding: 80px 15px;
+  }
+  
+  .cards-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .card-content {
+    padding: 30px 20px;
+  }
+}
+    
+    
+    
+    
+    
+    /* ===================== */
+/*      FLIP CARDS       */
+/* ===================== */
+.flip-section {
+  padding: 100px 20px;
+  background: #FFFFFF0A;
+  text-align: center;
+}
+
+.flip-section h2 {
+  font-size: 2.2rem;
+  margin-bottom: 60px;
+  color: #B5B5B5;
+  font-weight: 600;
+  position: relative;
+}
+
+.flip-section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #ffd700;
+  margin: 12px auto 0;
+  border-radius: 3px;
+}
+
+/* Container */
+.flip-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+/* Flip Card */
+.flip-card {
+  width: 100%;
+  height: 280px;
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* Caras */
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.flip-front {
+  background: #3E0063;
+}
+
+.flip-back {
+  background: #3F008A;
+  color: #ECECEC;
+  transform: rotateY(180deg);
+}
+
+/* Ícono circular */
+.icon-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #0027FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: transform 0.4s, background 0.4s;
+}
+
+.icon-circle i {
+  font-size: 36px;
+  color: #81CAFF;
+}
+
+.flip-card:hover .icon-circle {
+  transform: scale(1.1);
+  background: #2500A8;
+}
+
+.flip-front h3 {
+  color: #DCDCDC;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.flip-back p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #FFFFFF;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .flip-section {
+    padding: 80px 15px;
+  }
+  
+  .flip-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .flip-card {
+    height: 260px;
+  }
+  
+  .icon-circle {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .icon-circle i {
+    font-size: 30px;
+  }
+}
+    
+    
+    
+/* ===================== */
+/*     CONTADOR CIRCULAR */
+/* ===================== */
+.counter-section {
+  padding: 100px 20px;
+  background: #111;
+  color: #fff;
+  text-align: center;
+}
+
+.counter-section h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #8D00FF;
+}
+
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: conic-gradient(#4500FF 0deg, #333333 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s ease;
+  box-shadow: 0 0 20px rgba(81, 0, 255, 0.3);
+}
+
+.circle span {
+  position: absolute;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .circle {
+    width: 120px;
+    height: 120px;
+  }
+  .circle span {
+    font-size: 2rem;
+  }
+}    
