@@ -82,11 +82,11 @@ main img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: var(--radius);
-  margin: 0.8rem auto;
+  /*border-radius: var(--radius);*/
+  /*margin: 0.8rem auto;
   box-shadow: var(--shadow);
-  object-fit: cover;
-  max-width: 99%;
+  object-fit: cover;*/
+  max-width: 100%;
 }
 main video,
 main iframe {
