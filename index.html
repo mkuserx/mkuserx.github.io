@@ -1,1 +1,11 @@
-
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.body.innerHTML = `
+      <h2>PAGINA EN ESPAÑOL </h2>
+      <p> redireccionando al sitio /es/...</p>
+    `;
+    setTimeout(function() {
+      window.location.replace("https://tusitio.com/blog/articulo-nuevo");
+    }, 3000);
+  });
+</script>
