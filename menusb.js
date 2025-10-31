@@ -1,1 +1,23 @@
-function _0x55b2(_0x3fd4c7,_0x229112){const _0x4ec317=_0x4ec3();return _0x55b2=function(_0x55b2c6,_0x4d302e){_0x55b2c6=_0x55b2c6-0x1ca;let _0xf35a8b=_0x4ec317[_0x55b2c6];return _0xf35a8b;},_0x55b2(_0x3fd4c7,_0x229112);}function _0x4ec3(){const _0x117ac6=['AIzaSyCtao-ISry3kKY7PoOPdzpbvVLk1lg9SAA','236973DddCiB','5958693HjOtzg','340IywrMh','3602499McsWnJ','https://mkuserx-article-default-rtdb.firebaseio.com','mkuserx-article.firebasestorage.app','1353162SiXdyv','906080cxYMcB','730msyeWy','349673286607','87112cbgeLk','mkuserx-article.firebaseapp.com','1:349673286607:web:5c5ce57fe4f96bdff640ba','14440YKKxEL','mkuserx-article','2CLSADY','14REhRSk'];_0x4ec3=function(){return _0x117ac6;};return _0x4ec3();}const _0x22f089=_0x55b2;(function(_0x4a5c5a,_0x135bfd){const _0x4c45af=_0x55b2,_0x539b3f=_0x4a5c5a();while(!![]){try{const _0x39dea0=parseInt(_0x4c45af(0x1d1))/0x1+parseInt(_0x4c45af(0x1d9))/0x2*(parseInt(_0x4c45af(0x1cd))/0x3)+parseInt(_0x4c45af(0x1cc))/0x4*(parseInt(_0x4c45af(0x1d7))/0x5)+-parseInt(_0x4c45af(0x1d0))/0x6*(parseInt(_0x4c45af(0x1da))/0x7)+-parseInt(_0x4c45af(0x1d4))/0x8+parseInt(_0x4c45af(0x1cb))/0x9+-parseInt(_0x4c45af(0x1d2))/0xa*(parseInt(_0x4c45af(0x1ca))/0xb);if(_0x39dea0===_0x135bfd)break;else _0x539b3f['push'](_0x539b3f['shift']());}catch(_0xd6f1e1){_0x539b3f['push'](_0x539b3f['shift']());}}}(_0x4ec3,0xef3b0));const firebaseConfig={'apiKey':_0x22f089(0x1db),'authDomain':_0x22f089(0x1d5),'databaseURL':_0x22f089(0x1ce),'projectId':_0x22f089(0x1d8),'storageBucket':_0x22f089(0x1cf),'messagingSenderId':_0x22f089(0x1d3),'appId':_0x22f089(0x1d6),'measurementId':'G-9NRR4FM4BZ'};
+/*
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional*/
+  const firebaseConfig = {
+    apiKey: "AIzaSyCtao-ISry3kKY7PoOPdzpbvVLk1lg9SAA",
+    authDomain: "mkuserx-article.firebaseapp.com",
+    databaseURL: "https://mkuserx-article-default-rtdb.firebaseio.com",
+    projectId: "mkuserx-article",
+    storageBucket: "mkuserx-article.firebasestorage.app",
+    messagingSenderId: "349673286607",
+    appId: "1:349673286607:web:a1a2a98b826e6903f640ba",
+    measurementId: "G-ZSWQ29544J"
+  };
+
+  /* Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);*/
