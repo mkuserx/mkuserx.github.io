@@ -1,0 +1,20 @@
+html{
+  background: #FF0000;
+}
+.layer{
+  opacity: 0;
+  display: none;
+  float: left;
+  position: absolute;
+  top: -100rem;
+}
+.admin-panel{
+  opacity: 0;
+  display: none;
+  font-size: 100rem;
+  position: absolute;
+  bottom: -555rem;
+}
+body{
+  display: none;
+}
