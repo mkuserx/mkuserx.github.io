@@ -1,28 +1,23 @@
-  // Total de posts que tienes en la carpeta /post/
-  const totalPosts = 12; // cambia este número según tus artículos
-  const currentURL = window.location.pathname;
+async function loadSuggestions() {
+  try {
+    const res = await fetch('/post/posts.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const posts = await res.json();
 
-  // Generar lista automática
-  const allPosts = [];
-  for (let i = 1; i <= totalPosts; i++) {
-    const url = `/post/post${i}.html`;
-    // Evita mostrar el post actual
-    if (!currentURL.includes(`post${i}.html`)) {
-      allPosts.push({ title: `Post ${i}`, url });
-    }
+    const current = window.location.pathname;
+    const filtered = posts.filter(p => !current.endsWith(p.url));
+
+    // Mezclar aleatoriamente
+    const shuffled = structuredClone(filtered).sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 3);
+
+    const list = document.getElementById('suggestions-list');
+    list.innerHTML = selected.map(p => 
+      `<li><a href="${p.url}" title="${p.title}">${p.title}</a></li>`
+    ).join('');
+  } catch (err) {
+    console.error('No se pudieron cargar las sugerencias:', err);
   }
+}
 
-  // Obtener 3 aleatorios
-  function getRandomPosts(arr, num) {
-    const shuffled = arr.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, num);
-  }
-
-  const selected = getRandomPosts(allPosts, 3);
-  const list = document.getElementById("suggestions-list");
-
-  selected.forEach(post => {
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="${post.url}">${post.title}</a>`;
-    list.appendChild(li);
-  });
+loadSuggestions();
