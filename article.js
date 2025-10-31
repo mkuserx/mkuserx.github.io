@@ -1,32 +1,28 @@
-  async function loadPosts() {
-    try {
-      
-      const response = await fetch('/post/');
-      const text = await response.text();
-      
+  // Total de posts que tienes en la carpeta /post/
+  const totalPosts = 12; // cambia este número según tus artículos
+  const currentURL = window.location.pathname;
 
-      const matches = [...text.matchAll(/href="([^"]+\.html)"/g)];
-      const posts = matches
-        .map(m => m[1])
-        .filter(name => !window.location.pathname.includes(name));
-      
-      
-      if (posts.length === 0) return;
-      
-      
-      const shuffled = posts.sort(() => 0.5 - Math.random());
-      const selected = shuffled.slice(0, 3);
-      
-      const list = document.getElementById("suggestions-list");
-      selected.forEach(file => {
-        const title = file.replace(/\.html$/, "").replace(/[-_]/g, " ");
-        const li = document.createElement("li");
-        li.innerHTML = `<a href="/post/${file}">${title.charAt(0).toUpperCase() + title.slice(1)}</a>`;
-        list.appendChild(li);
-      });
-    } catch (err) {
-      console.error("No se pudo cargar la lista de posts:", err);
+  // Generar lista automática
+  const allPosts = [];
+  for (let i = 1; i <= totalPosts; i++) {
+    const url = `/post/post${i}.html`;
+    // Evita mostrar el post actual
+    if (!currentURL.includes(`post${i}.html`)) {
+      allPosts.push({ title: `Post ${i}`, url });
     }
   }
-  
-  loadPosts();
+
+  // Obtener 3 aleatorios
+  function getRandomPosts(arr, num) {
+    const shuffled = arr.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+  }
+
+  const selected = getRandomPosts(allPosts, 3);
+  const list = document.getElementById("suggestions-list");
+
+  selected.forEach(post => {
+    const li = document.createElement("li");
+    li.innerHTML = `<a href="${post.url}">${post.title}</a>`;
+    list.appendChild(li);
+  });
