@@ -258,3 +258,58 @@ main figcaption {
     background: #eaf1ff;
     transform: translateX(5px);
   }
+.articleMetadata {
+  margin-top: 0.7em;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.2rem;
+  background: #f9fafc;
+  border-left: 4px solid #0056b3;
+  border-radius: 8px;
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.metaBreadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: #444;
+}
+
+.metaBreadcrumb a {
+  text-decoration: none;
+  color: #0056b3;
+  transition: color 0.25s ease;
+}
+
+.metaBreadcrumb a:hover {
+  color: #000;
+}
+
+.metaBreadcrumb .separator {
+  margin: 0 0.4rem;
+  color: #999;
+}
+
+.metaBreadcrumb .currentTitle {
+  font-weight: 600;
+  color: #222;
+}
+
+.metaDates {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.metaDates i {
+  margin-right: 4px;
+  color: #0056b3;
+}
+
+.metaDates .separator {
+  margin: 0 0.5rem;
+  color: #aaa;
+}  
