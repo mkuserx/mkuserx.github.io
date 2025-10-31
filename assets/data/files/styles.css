@@ -1,0 +1,277 @@
+ #noStyleWarning {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 1);
+    color: #FF0000;
+    font-family: system-ui, sans-serif;
+    text-align: center;
+    padding-top: 18%;
+    font-size: 1.1rem;
+    z-index: 9999;
+    animation: fadeIn 0.4s ease forwards;
+  }
+
+  #noStyleWarning button {
+    margin-top: 1rem;
+    background: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+header{
+  background: #006C43;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 0.7rem;
+}
+header h1{
+  font-size: 1.5rem;
+}
+.layer, .admin-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f5f7fa;
+  transition: all 0.3s ease;
+}
+
+.box {
+  background-color: #EDEDED;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+}
+#postFile{
+  display: none;
+}
+#layer2 {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.box-key h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.box-key input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.box-key input[type="password"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.box-key button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.box-key button:hover {
+  background-color: #0056b3;
+}
+
+.message-error {
+  color: #dc3545;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.admin-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.box-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.box-form input[type="text"],
+.box-form input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.box-form input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+#editor {
+  min-height: 200px;
+  border: 1px solid #ddd;
+  /*border-radius: 8px;*/
+  padding: 4px;
+  margin-bottom: 1rem;
+  background-color: #fafafa;
+}
+
+#publishBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #00731A;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#publishBtn:hover {
+  background-color: #218838;
+}
+
+.btn-logout {
+  width: 100%;
+  padding: 12px;
+  background-color: #95000E;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #c82333;
+}
+
+.message-status {
+  color: #28a745;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.box-posts h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+#postsContainer {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .admin-panel {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box {
+    max-width: 100%;
+    margin: 0.5rem;
+  }
+
+  .box-form, .box-posts {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .box {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  input, button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  #editor {
+    min-height: 150px;
+  }
+}
+
+#postsContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+#postsContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+
+#postsContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 8px;
+}
+
+#postsContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.showclassfunction::before {
+    content: "sys_314alpha";
+  }
+  .systemcheckloaded::after {
+    content: "verify_907zeta";
+  }
