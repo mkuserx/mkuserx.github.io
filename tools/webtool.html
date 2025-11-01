@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin tools / open / Convertidor de texto a enlace (slug)</title>
+  <style>
+    :root{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;}
+    body{margin:0;background:#0f172a;color:#e6eef8;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:32px}
+    .card{width:100%;max-width:820px;background:linear-gradient(180deg,#071133 0%,#081125 100%);border-radius:14px;padding:22px;box-shadow:0 8px 30px rgba(2,6,23,.6);}
+    h1{margin:0 0 8px;font-size:20px}
+    p.lead{margin:0 0 18px;color:#9fb0d6}
+    .row{display:flex;gap:12px;align-items:center}
+    .col{flex:1}
+    label{display:block;font-size:13px;color:#c7d9f8;margin-bottom:6px}
+    input[type=text], textarea{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);color:inherit;outline:none;font-size:14px}
+    .options{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .opt{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.02);padding:8px;border-radius:8px}
+    button{background:#2563eb;border:none;color:white;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+    button.ghost{background:transparent;border:1px solid rgba(255,255,255,.06)}
+    .result{margin-top:18px;padding:12px;border-radius:8px;background:rgba(15,23,42,.6);display:flex;gap:12px;align-items:center}
+    code.slug{background:transparent;padding:8px 10px;border-radius:6px;border:1px dashed rgba(255,255,255,.04);font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace}
+    .notice{margin-top:14px;color:#a8c0ff;font-size:13px}
+    footer{margin-top:14px;color:#8ea6e6;font-size:12px}
+    .copyok{opacity:0;transition:opacity .35s;color:#4ade80;margin-left:6px}
+    .copyok.show{opacity:1}
+    .permalink{font-size:13px;color:#9fb0d6}
+    .small{font-size:13px;color:#9fb0d6}
+    @media (max-width:640px){.row{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <h1>Convertidor de texto → enlace (slug)</h1>
+    <p class="lead">Escribe un título y obtén una versión compatible con URL (slug). Opciones para personalizar el resultado.</p><div class="row">
+  <div class="col">
+    <label for="inputText">Título / Texto</label>
+    <textarea id="inputText" rows="3" placeholder="Ej: Mi título: ¿Cómo Crear un proyecto?" aria-label="Texto de entrada"></textarea>
+  </div>
+  <div style="width:150px;display:flex;flex-direction:column;gap:10px;">
+    <label>&nbsp;</label>
+    <button id="convertBtn">Convertir</button>
+    <button id="clearBtn" class="ghost">Limpiar</button>
+  </div>
+</div>
+
+<div class="options" aria-hidden="false">
+  <label class="opt"><input type="checkbox" id="lowercase" checked> <span class="small">Minúsculas</span></label>
+  <label class="opt"><input type="checkbox" id="removeAccents" checked> <span class="small">Eliminar acentos</span></label>
+  <label class="opt"><input type="checkbox" id="replaceSpaces" checked> <span class="small">Reemplazar espacios por guiones (-)</span></label>
+  <label class="opt"><input type="checkbox" id="removeUnsafe" checked> <span class="small">Eliminar caracteres no permitidos</span></label>
+  <label class="opt"><input type="checkbox" id="trimHyphens" checked> <span class="small">Recortar guiones al inicio/fin</span></label>
+</div>
+
+<div class="result" role="status" aria-live="polite">
+  <div style="flex:1">
+    <label class="small">Slug generado</label>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+      <code id="slugOutput" class="slug">-</code>
+      <button id="copyBtn">Copiar</button>
+      <span id="copyOk" class="copyok">¡Copiado!</span>
+    </div>
+    <div style="margin-top:8px" class="permalink" id="permalink">/mi-sitio/<span style="font-family: ui-monospace, monospace;" id="permalinkSlug">-</span></div>
+  </div>
+</div>
+
+<div class="notice">Sugerencia: puedes pegar títulos largos; el convertidor quitará símbolos y colapsará guiones repetidos.</div>
+<footer>Ejemplo: <span class="small">"Mi título A" → "mi-titulo-a"</span></footer>
+
+  </div>  <script>
+const _0x493e55=_0x4b31;(function(_0x1fb375,_0x38a9bc){const _0x8f9fd0=_0x4b31,_0xaf08b7=_0x1fb375();while(!![]){try{const _0x2573bd=-parseInt(_0x8f9fd0(0x1c2))/0x1*(parseInt(_0x8f9fd0(0x1d8))/0x2)+-parseInt(_0x8f9fd0(0x1c8))/0x3+parseInt(_0x8f9fd0(0x1d6))/0x4*(-parseInt(_0x8f9fd0(0x1dd))/0x5)+parseInt(_0x8f9fd0(0x1d0))/0x6*(parseInt(_0x8f9fd0(0x1ce))/0x7)+parseInt(_0x8f9fd0(0x1e8))/0x8+parseInt(_0x8f9fd0(0x1cf))/0x9+parseInt(_0x8f9fd0(0x1d9))/0xa;if(_0x2573bd===_0x38a9bc)break;else _0xaf08b7['push'](_0xaf08b7['shift']());}catch(_0x86efff){_0xaf08b7['push'](_0xaf08b7['shift']());}}}(_0x4f09,0xde871));function slugify(_0x14dfb6,_0xb25509){const _0x17fc19=_0x4b31;_0xb25509=Object[_0x17fc19(0x1c3)]({'lowercase':!![],'removeAccents':!![],'replaceSpaces':!![],'removeUnsafe':!![],'trimHyphens':!![]},_0xb25509||{});if(typeof _0x14dfb6!==_0x17fc19(0x1e7))return'';let _0x26f5aa=_0x14dfb6;return _0xb25509[_0x17fc19(0x1c6)]&&(_0x26f5aa=_0x26f5aa[_0x17fc19(0x1e3)]('NFD')[_0x17fc19(0x1e5)](/\p{Diacritic}/gu,'')),_0xb25509[_0x17fc19(0x1e2)]&&(_0x26f5aa=_0x26f5aa[_0x17fc19(0x1e5)](/\s+/g,'-')),_0xb25509[_0x17fc19(0x1df)]&&(_0x26f5aa=_0x26f5aa[_0x17fc19(0x1e5)](/[^\p{L}\p{N}_-]+/gu,'')),_0xb25509[_0x17fc19(0x1ca)]&&(_0x26f5aa=_0x26f5aa[_0x17fc19(0x1d7)]()),_0x26f5aa=_0x26f5aa[_0x17fc19(0x1e5)](/-+/g,'-'),_0xb25509[_0x17fc19(0x1e0)]&&(_0x26f5aa=_0x26f5aa[_0x17fc19(0x1e5)](/^[-_]+|[-_]+$/g,'')),_0x26f5aa;}function _0x4f09(){const _0xd9df8a=['input','inputText','clearBtn','click','3043724POenaR','toLowerCase','2YZbzTr','3358100IFkfSi','getElementById','addEventListener','textContent','5AqTcuj','value','removeUnsafe','trimHyphens','execCommand','replaceSpaces','normalize','Mi\x20título\x20A','replace','remove','string','9926576nlIuMd','convertBtn','slugOutput','1775089upoRtQ','assign','checked','focus','removeAccents','classList','2463618ifATEN','writeText','lowercase','add','clipboard','show','63crtktd','15655725vEZAaj','635028DCoygL','select'];_0x4f09=function(){return _0xd9df8a;};return _0x4f09();}function _0x4b31(_0x2b97d4,_0x19a2ae){const _0x4f0901=_0x4f09();return _0x4b31=function(_0x4b31c3,_0xd2be77){_0x4b31c3=_0x4b31c3-0x1c0;let _0x389e56=_0x4f0901[_0x4b31c3];return _0x389e56;},_0x4b31(_0x2b97d4,_0x19a2ae);}const inputText=document[_0x493e55(0x1da)](_0x493e55(0x1d3)),convertBtn=document[_0x493e55(0x1da)](_0x493e55(0x1c0)),slugOutput=document[_0x493e55(0x1da)](_0x493e55(0x1c1)),copyBtn=document[_0x493e55(0x1da)]('copyBtn'),copyOk=document[_0x493e55(0x1da)]('copyOk'),permalinkSlug=document[_0x493e55(0x1da)]('permalinkSlug'),clearBtn=document[_0x493e55(0x1da)](_0x493e55(0x1d4));function readOptions(){const _0x3294f7=_0x493e55;return{'lowercase':document['getElementById'](_0x3294f7(0x1ca))[_0x3294f7(0x1c4)],'removeAccents':document[_0x3294f7(0x1da)]('removeAccents')['checked'],'replaceSpaces':document[_0x3294f7(0x1da)]('replaceSpaces')['checked'],'removeUnsafe':document['getElementById']('removeUnsafe')[_0x3294f7(0x1c4)],'trimHyphens':document['getElementById'](_0x3294f7(0x1e0))[_0x3294f7(0x1c4)]};}function updateSlug(){const _0x2b1de8=_0x493e55,_0x47bcfa=inputText['value']||'',_0x584363=readOptions(),_0x52db64=slugify(_0x47bcfa,_0x584363)||'-';slugOutput[_0x2b1de8(0x1dc)]=_0x52db64,permalinkSlug[_0x2b1de8(0x1dc)]=_0x52db64;}convertBtn[_0x493e55(0x1db)](_0x493e55(0x1d5),()=>{updateSlug(),copyBtn['focus']();}),inputText[_0x493e55(0x1db)](_0x493e55(0x1d2),()=>{updateSlug();}),copyBtn[_0x493e55(0x1db)](_0x493e55(0x1d5),async()=>{const _0x45765b=_0x493e55,_0x41d687=slugOutput[_0x45765b(0x1dc)];try{await navigator[_0x45765b(0x1cc)][_0x45765b(0x1c9)](_0x41d687),copyOk[_0x45765b(0x1c7)][_0x45765b(0x1cb)](_0x45765b(0x1cd)),setTimeout(()=>copyOk[_0x45765b(0x1c7)][_0x45765b(0x1e6)](_0x45765b(0x1cd)),0x578);}catch(_0x5aab4c){const _0x153ad1=document['createElement']('textarea');_0x153ad1[_0x45765b(0x1de)]=_0x41d687,document['body']['appendChild'](_0x153ad1),_0x153ad1[_0x45765b(0x1d1)](),document[_0x45765b(0x1e1)]('copy'),_0x153ad1['remove'](),copyOk[_0x45765b(0x1c7)][_0x45765b(0x1cb)](_0x45765b(0x1cd)),setTimeout(()=>copyOk[_0x45765b(0x1c7)][_0x45765b(0x1e6)](_0x45765b(0x1cd)),0x578);}}),clearBtn[_0x493e55(0x1db)](_0x493e55(0x1d5),()=>{const _0x14b46a=_0x493e55;inputText[_0x14b46a(0x1de)]='',updateSlug(),inputText[_0x14b46a(0x1c5)]();}),inputText[_0x493e55(0x1de)]=_0x493e55(0x1e4),updateSlug();
+  </script></body>
+</html>
