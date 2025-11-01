@@ -72,5 +72,14 @@
 </script>
 <script src="/menusb.js">menusb.js</script>
 <script src="/assets/data/files/null/accessibility/blank-sv&68hjktddttndtktdueasr55.js"></script>
+
+<script>
+  function onClick(e) {
+    e.preventDefault();
+    grecaptcha.enterprise.ready(async () => {
+      const token = await grecaptcha.enterprise.execute('6Lc56_0rAAAAANQVUMP_59mtM4yu5J83b6ux7JSr', {action: 'LOGIN'});
+    });
+  }
+</script>
 </body>
 </html>
