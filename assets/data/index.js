@@ -8,7 +8,7 @@ import { getDatabase, ref, push, set, onValue, remove, update } from "https://ww
 import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-storage.js";
 
 import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app-check.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+/*import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";*/
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
 
  const appCheck = initializeAppCheck(app, {
