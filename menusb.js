@@ -22,7 +22,7 @@
   const analytics = getAnalytics(app);*/
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCtao-ISry3kKY7PoOPdzpbvVLk1lg9SAA",
+  apiKey: "6Lc56_0rAAAAANQVUMP_59mtM4yu5J83b6ux7JSr",
   authDomain: "mkuserx-article.firebaseapp.com",
   databaseURL: "https://mkuserx-article-default-rtdb.firebaseio.com",
   projectId: "mkuserx-article",
