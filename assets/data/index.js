@@ -7,14 +7,14 @@
 import { getDatabase, ref, push, set, onValue, remove, update } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-storage.js";
 
-import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app-check.js";
-/*import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";*/
+/*import { initializeAppCheck, ReCaptchaV3Provider } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app-check.js";*/
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-analytics.js";
 
- const appCheck = initializeAppCheck(app, {
+/* const appCheck = initializeAppCheck(app, {
     provider: new ReCaptchaV3Provider('6Lc56_0rAAAAANQVUMP_59mtM4yu5J83b6ux7JSr'),
     isTokenAutoRefreshEnabled: true
-  });
+  });*/
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const storage = getStorage(app);
