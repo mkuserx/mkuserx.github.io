@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Posts - Supabase</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    .hidden { display: none; }
+    .card { border: 1px solid #ccc; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    input, button { margin: 5px 0; padding: 8px; }
+  </style>
+</head>
+<body>
+
+  <h2>Panel de Posts - Supabase</h2>
+
+  <div id="auth-section">
+    <h3>Iniciar sesión / Registrarse</h3>
+    <input type="email" id="email" placeholder="Correo electrónico"><br>
+    <input type="password" id="password" placeholder="Contraseña"><br>
+    <button id="loginBtn">Iniciar sesión</button>
+    <button id="registerBtn">Registrarse</button>
+  </div>
+
+  <div id="upload-section" class="hidden">
+    <h3>Subir imagen</h3>
+    <input type="file" id="fileInput"><br>
+    <button id="uploadBtn">Subir imagen</button>
+    <p id="uploadStatus"></p>
+
+    <button id="logoutBtn">Cerrar sesión</button>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+    const supabaseUrl = 'https://latkptovoatqyzrmhujz.supabase.co'
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxhdGtwdG92b2F0cXl6cm1odWp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0OTczNTgsImV4cCI6MjA3NTA3MzM1OH0.ZrEc-N_xED7-uzJcpNntfNfOMjET9Mni9-HvFYc8nL8'
+    const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+    const authSection = document.getElementById('auth-section')
+    const uploadSection = document.getElementById('upload-section')
+
+    // ✅ Mostrar secciones según autenticación
+    async function checkSession() {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        authSection.classList.add('hidden')
+        uploadSection.classList.remove('hidden')
+      } else {
+        authSection.classList.remove('hidden')
+        uploadSection.classList.add('hidden')
+      }
+    }
+
+    checkSession()
+
+    // 🧩 Registro
+    document.getElementById('registerBtn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value
+      const password = document.getElementById('password').value
+      const { error } = await supabase.auth.signUp({ email, password })
+      if (error) alert(error.message)
+      else alert('Cuenta creada. Revisa tu correo para confirmar.')
+    })
+
+    // 🔐 Login
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email = document.getElementById('email').value
+      const password = document.getElementById('password').value
+      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) alert(error.message)
+      else checkSession()
+    })
+
+    // 🚪 Logout
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await supabase.auth.signOut()
+      checkSession()
+    })
+
+    // 📤 Subir imagen
+    document.getElementById('uploadBtn').addEventListener('click', async () => {
+      const file = document.getElementById('fileInput').files[0]
+      if (!file) return alert('Selecciona una imagen.')
+
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return alert('Debes iniciar sesión.')
+
+      const filePath = `${user.id}/${Date.now()}_${file.name}`
+
+      const { error } = await supabase.storage
+        .from('post-images')
+        .upload(filePath, file)
+
+      if (error) {
+        document.getElementById('uploadStatus').textContent = '❌ Error al subir: ' + error.message
+      } else {
+        const { data: { publicUrl } } = supabase
+          .storage
+          .from('post-images')
+          .getPublicUrl(filePath)
+
+        document.getElementById('uploadStatus').innerHTML =
+          `✅ Subida correcta: <a href="${publicUrl}" target="_blank">Ver imagen</a>`
+      }
+    })
+  </script>
+
+</body>
+</html>
